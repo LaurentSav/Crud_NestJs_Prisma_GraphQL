@@ -1,26 +1,51 @@
+import { Prisma } from '.prisma/client';
 import { Injectable } from '@nestjs/common';
+import { PrismaService } from 'src/services/prisma.service';
 import { CreateArticleInput } from './dto/create-article.input';
 import { UpdateArticleInput } from './dto/update-article.input';
+import { Article } from './entities/article.entity';
 
 @Injectable()
 export class ArticlesService {
-  create(createArticleInput: CreateArticleInput) {
-    return 'This action adds a new article';
+constructor(private readonly prisma: PrismaService){}
+
+  async create(data: Prisma.ArticleCreateInput){
+    return await this.prisma.article.create({
+      data
+    });
+    
   }
 
-  findAll() {
-    return `This action returns all articles`;
+  async findAll() {
+    return await this.prisma.article.findMany();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} article`;
+  async findOne(id: string){
+    return await this.prisma.article.findUnique(
+      {
+        where: {
+          id: id
+        }
+      }
+    )
   }
 
-  update(id: number, updateArticleInput: UpdateArticleInput) {
-    return `This action updates a #${id} article`;
+  async update(id: string, data: Prisma.ArticleUpdateInput) {
+    return await this.prisma.article.update({
+      data: data,
+      where:{
+        id: id
+      }
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} article`;
+  remove(id: string) {
+    return this.prisma.article.delete(
+      {
+        where:{
+          id: id
+        }
+      }
+    )
   }
 }

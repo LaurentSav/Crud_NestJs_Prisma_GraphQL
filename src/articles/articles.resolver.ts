@@ -19,17 +19,17 @@ export class ArticlesResolver {
   }
 
   @Query(() => Article, { name: 'article' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
+  findOne(@Args('id', { type: () => String }) id: string) {
     return this.articlesService.findOne(id);
   }
 
   @Mutation(() => Article)
   updateArticle(@Args('updateArticleInput') updateArticleInput: UpdateArticleInput) {
-    return this.articlesService.update(updateArticleInput.id, updateArticleInput);
+    return this.articlesService.update(updateArticleInput.id , updateArticleInput);
   }
 
   @Mutation(() => Article)
-  removeArticle(@Args('id', { type: () => Int }) id: number) {
+  removeArticle(@Args('id', { type: () => String }) id: string) {
     return this.articlesService.remove(id);
   }
 }

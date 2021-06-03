@@ -2,6 +2,26 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Article {
+  """Contenu de l'article"""
+  content: String
+
+  """Date de création de l'article"""
+  created_date: Date
+
+  """Id"""
+  id: ID!
+
+  """Temps de lecture d'un article l'article"""
+  reading_time: Int
+
+  """Titre de l'article"""
+  title: String
+
+  """Date de mise à jour de l'article"""
+  updated_date: Date
+}
+
 type Auth {
   """JWT access token"""
   accessToken: String!
@@ -16,6 +36,28 @@ input ChangePasswordInput {
   oldPassword: String!
 }
 
+input CreateArticleInput {
+  """Contenu de l'article"""
+  content: String
+
+  """Date de création de l'article"""
+  created_date: Date
+
+  """Temps de lecture d'un article l'article"""
+  reading_time: Int
+
+  """Titre de l'article"""
+  title: String
+
+  """Date de mise à jour de l'article"""
+  updated_date: Date
+}
+
+input CreateIssueInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
 input CreatePostInput {
   content: String!
   title: String!
@@ -24,6 +66,11 @@ input CreatePostInput {
 """Date custom scalar type"""
 scalar Date
 
+type Issue {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
 input LoginInput {
   email: String!
   password: String!
@@ -31,10 +78,16 @@ input LoginInput {
 
 type Mutation {
   changePassword(data: ChangePasswordInput!): User!
+  createArticle(createArticleInput: CreateArticleInput!): Article!
+  createIssue(createIssueInput: CreateIssueInput!): Issue!
   createPost(data: CreatePostInput!): Post!
   login(data: LoginInput!): Auth!
   refreshToken(token: String!): Token!
+  removeArticle(id: String!): Article!
+  removeIssue(id: Int!): Issue!
   signup(data: SignupInput!): Auth!
+  updateArticle(updateArticleInput: UpdateArticleInput!): Article!
+  updateIssue(updateIssueInput: UpdateIssueInput!): Issue!
   updateUser(data: UpdateUserInput!): User!
 }
 
@@ -94,8 +147,12 @@ enum PostOrderField {
 }
 
 type Query {
+  article(id: String!): Article!
+  articles: [Article!]!
   hello(name: String!): String!
   helloWorld: String!
+  issue(id: Int!): Issue!
+  issues: [Issue!]!
   me: User!
   post(postId: String!): Post!
   publishedPosts(after: String, before: String, first: Int, last: Int, orderBy: PostOrder, query: String, skip: Int): PostConnection!
@@ -125,6 +182,30 @@ type Token {
 
   """JWT refresh token"""
   refreshToken: String!
+}
+
+input UpdateArticleInput {
+  """Contenu de l'article"""
+  content: String
+
+  """Date de création de l'article"""
+  created_date: Date
+  id: String!
+
+  """Temps de lecture d'un article l'article"""
+  reading_time: Int
+
+  """Titre de l'article"""
+  title: String
+
+  """Date de mise à jour de l'article"""
+  updated_date: Date
+}
+
+input UpdateIssueInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
 }
 
 input UpdateUserInput {
