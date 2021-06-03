@@ -19,8 +19,8 @@ export class CreateArticleInput {
   updatedAt?: Date;
 
   @Field({nullable: true, description: "Publication de l'article"})
-  published?: Boolean
+  published?: boolean
 
   @Field({nullable: true, description: "Archivation de l'article"})
-  archived?: Boolean
+  archived?: boolean
 }

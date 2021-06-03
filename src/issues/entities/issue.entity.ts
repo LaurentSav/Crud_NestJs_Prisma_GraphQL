@@ -12,10 +12,10 @@ export class Issue {
   updatedAt?: Date;
 
   @Field({nullable: true, description: "Publication de l'issue"})
-  published?: Boolean
+  published?: boolean
 
   @Field({nullable: true, description: "Archivation de l'issue"})
-  archived?: Boolean
+  archived?: boolean
 
   @Field({nullable: true, description: "Liste d'article de l'issue"})
   articles?: []
