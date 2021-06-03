@@ -20,4 +20,10 @@ export class UpdateArticleInput extends PartialType(CreateArticleInput) {
 
   @Field({nullable: true, description: "Date de mise à jour de l'article"})
   updatedAt?: Date;
+
+  @Field({nullable: true, description: "Publication de l'article"})
+  published?: Boolean
+
+  @Field({nullable: true, description: "Archivation de l'article"})
+  archived?: Boolean
 }

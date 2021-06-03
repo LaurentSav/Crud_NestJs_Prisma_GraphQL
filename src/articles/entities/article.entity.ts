@@ -1,4 +1,5 @@
 import { ObjectType, Field, ID } from '@nestjs/graphql';
+import { Issue } from 'src/issues/entities/issue.entity';
 import { User } from 'src/models/user.model';
 
 @ObjectType()
@@ -21,5 +22,17 @@ export class Article {
 
   @Field({nullable: true, description: "Date de mise à jour de l'article"})
   updatedAt?: Date;
+
+  @Field({nullable: true, description: "Publication de l'article"})
+  published?: Boolean
+
+  @Field({nullable: true, description: "Archivation de l'article"})
+  archived?: Boolean
+
+  @Field({nullable: true, description: "Issue de l'article"})
+  issue?: Issue
+
+  @Field(type => ID, {nullable: true, description: "Id de l'issue"})
+  issueId?: string
   
 }
