@@ -16,8 +16,8 @@ export class UpdateArticleInput extends PartialType(CreateArticleInput) {
   reading_time?: number;
 
   @Field({nullable: true, description: "Date de création de l'article"})
-  created_date?: Date;
+  createdAt?: Date;
 
   @Field({nullable: true, description: "Date de mise à jour de l'article"})
-  updated_date?: Date;
+  updatedAt?: Date;
 }

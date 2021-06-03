@@ -7,7 +7,7 @@ type Article {
   content: String
 
   """Date de création de l'article"""
-  created_date: Date
+  createdAt: Date
 
   """Id"""
   id: ID!
@@ -19,7 +19,7 @@ type Article {
   title: String
 
   """Date de mise à jour de l'article"""
-  updated_date: Date
+  updatedAt: Date
 }
 
 type Auth {
@@ -41,7 +41,7 @@ input CreateArticleInput {
   content: String
 
   """Date de création de l'article"""
-  created_date: Date
+  createdAt: Date
 
   """Temps de lecture d'un article l'article"""
   reading_time: Int
@@ -50,7 +50,7 @@ input CreateArticleInput {
   title: String
 
   """Date de mise à jour de l'article"""
-  updated_date: Date
+  updatedAt: Date
 }
 
 input CreateIssueInput {
@@ -189,7 +189,7 @@ input UpdateArticleInput {
   content: String
 
   """Date de création de l'article"""
-  created_date: Date
+  createdAt: Date
   id: String!
 
   """Temps de lecture d'un article l'article"""
@@ -199,7 +199,7 @@ input UpdateArticleInput {
   title: String
 
   """Date de mise à jour de l'article"""
-  updated_date: Date
+  updatedAt: Date
 }
 
 input UpdateIssueInput {
