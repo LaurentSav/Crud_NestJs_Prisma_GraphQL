@@ -3,8 +3,6 @@ import { IssuesService } from './issues.service';
 import { Issue } from './entities/issue.entity';
 import { CreateIssueInput } from './dto/create-issue.input';
 import { UpdateIssueInput } from './dto/update-issue.input';
-import { ArticlesService } from 'src/articles/articles.service';
-import { Role } from 'src/models/user.model';
 
 @Resolver(() => Issue)
 export class IssuesResolver {

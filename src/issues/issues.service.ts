@@ -1,7 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { disconnect } from 'process';
-import { UpdateArticleInput } from 'src/articles/dto/update-article.input';
-import { PrismaService } from 'src/services/prisma.service';
+import { PrismaService } from '../services/prisma.service';
 import { CreateIssueInput } from './dto/create-issue.input';
 import { UpdateIssueInput } from './dto/update-issue.input';
 
