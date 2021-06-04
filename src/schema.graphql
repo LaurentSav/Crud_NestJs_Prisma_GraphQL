@@ -116,14 +116,15 @@ input LoginInput {
 }
 
 type Mutation {
-  addArticle(idArticle: String!, idIssue: String!): Issue!
+  addArticlePost(idArticle: String!, idIssue: String!): Issue!
   changePassword(data: ChangePasswordInput!): User!
   createArticle(createArticleInput: CreateArticleInput!): Article!
   createIssue(createIssueInput: CreateIssueInput!): Issue!
   createPost(data: CreatePostInput!): Post!
   login(data: LoginInput!): Auth!
   refreshToken(token: String!): Token!
-  removeArticle(idArticle: String!, idIssue: String!): Issue!
+  removeArticle(id: String!): Article!
+  removeArticlePost(idArticle: String!, idIssue: String!): Issue!
   removeIssue(id: String!): Issue!
   signup(data: SignupInput!): Auth!
   updateArticle(updateArticleInput: UpdateArticleInput!): Article!

@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { disconnect } from 'process';
 import { UpdateArticleInput } from 'src/articles/dto/update-article.input';
 import { PrismaService } from 'src/services/prisma.service';
 import { CreateIssueInput } from './dto/create-issue.input';
@@ -17,7 +18,11 @@ export class IssuesService {
   }
 
   findAll() {
-    return this.prisma.issue.findMany();
+    return this.prisma.issue.findMany({
+      include: {
+        articles: true
+      }
+    });
   }
 
   findOne(id: string) {
@@ -48,23 +53,47 @@ export class IssuesService {
   }
 
   addArticle(issueId: string, articleId: string){
+    this.prisma.article.update({
+      data: {
+        issue: {connect: {id: issueId}}
+      },
+      where:{
+        id: articleId
+      }
+    })
+
     return this.prisma.issue.update({
       data: {
         articles:{connect: {id: articleId}},
       },
       where:{
         id: issueId
+      },
+      include: {
+        articles: true
       }
     })
   }
 
   removeArticle(issueId: string, articleId: string){
+    this.prisma.article.update({
+      data: {
+        issue: {disconnect: true}
+      },
+      where:{
+        id: articleId
+      }
+    })
+
     return this.prisma.issue.update({
       data: {
         articles:{disconnect: {id: articleId}},
       },
       where:{
         id: issueId
+      },
+      include: {
+        articles: true
       }
     })
   }

@@ -15,7 +15,9 @@ constructor(private readonly prisma: PrismaService){}
   }
 
   async findAll() {
-    return await this.prisma.article.findMany();
+    return await this.prisma.article.findMany({
+      
+    });
   }
 
   async findOne(id: string){
@@ -23,7 +25,7 @@ constructor(private readonly prisma: PrismaService){}
       {
         where: {
           id: id
-        }
+        },
       }
     )
   }
@@ -46,4 +48,5 @@ constructor(private readonly prisma: PrismaService){}
       }
     )
   }
+  
 }

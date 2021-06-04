@@ -35,12 +35,12 @@ export class IssuesResolver {
   }
 
   @Mutation(() => Issue)
-  addArticle(@Args('idIssue', { type: () => String }) issueId: string, @Args('idArticle', { type: () => String }) articleId: string) {
+  addArticlePost(@Args('idIssue', { type: () => String }) issueId: string, @Args('idArticle', { type: () => String }) articleId: string) {
     return this.issuesService.addArticle(issueId, articleId);
   }
 
   @Mutation(() => Issue)
-  removeArticle(@Args('idIssue', { type: () => String }) issueId: string, @Args('idArticle', { type: () => String }) articleId: string) {
+  removeArticlePost(@Args('idIssue', { type: () => String }) issueId: string, @Args('idArticle', { type: () => String }) articleId: string) {
     return this.issuesService.removeArticle(issueId, articleId);
   }
 
