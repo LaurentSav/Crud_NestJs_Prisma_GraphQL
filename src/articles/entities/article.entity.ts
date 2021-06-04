@@ -2,7 +2,7 @@ import { ObjectType, Field, ID } from '@nestjs/graphql';
 import { Issue } from 'src/issues/entities/issue.entity';
 import { User } from 'src/models/user.model';
 
-@ObjectType()
+@ObjectType('Article')
 export class Article {
   
   @Field(type => ID, {description: 'Id'})
@@ -32,7 +32,7 @@ export class Article {
   @Field(() => [Issue], {nullable: true, description: "Issue de l'article"})
   issue?: Issue
 
-  @Field(type => ID, {nullable: true, description: "Id de l'issue"})
+  @Field({nullable: true, description: "Id de l'issue"})
   issueId?: string
   
 }

@@ -19,7 +19,7 @@ type Article {
   issue: [Issue!]
 
   """Id de l'issue"""
-  issueId: ID
+  issueId: String
 
   """Publication de l'article"""
   published: Boolean
@@ -69,9 +69,6 @@ input CreateArticleInput {
 
   """Titre de l'article"""
   title: String
-
-  """Date de mise à jour de l'article"""
-  updatedAt: Date
 }
 
 input CreateIssueInput {
@@ -83,9 +80,6 @@ input CreateIssueInput {
 
   """Publication de l'issue"""
   published: Boolean
-
-  """Date de mise à jour de l'issue"""
-  updatedAt: Date
 }
 
 input CreatePostInput {
@@ -122,13 +116,14 @@ input LoginInput {
 }
 
 type Mutation {
+  addArticle(idArticle: String!, idIssue: String!): Issue!
   changePassword(data: ChangePasswordInput!): User!
   createArticle(createArticleInput: CreateArticleInput!): Article!
   createIssue(createIssueInput: CreateIssueInput!): Issue!
   createPost(data: CreatePostInput!): Post!
   login(data: LoginInput!): Auth!
   refreshToken(token: String!): Token!
-  removeArticle(id: String!): Article!
+  removeArticle(idArticle: String!, idIssue: String!): Issue!
   removeIssue(id: String!): Issue!
   signup(data: SignupInput!): Auth!
   updateArticle(updateArticleInput: UpdateArticleInput!): Article!

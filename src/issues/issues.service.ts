@@ -10,6 +10,7 @@ export class IssuesService {
   constructor(private readonly prisma: PrismaService){}
 
   create(createIssueInput: CreateIssueInput) {
+
     return this.prisma.issue.create({
       data: createIssueInput
     })
@@ -29,7 +30,9 @@ export class IssuesService {
 
   update(id: string, updateIssueInput: UpdateIssueInput) {
     return this.prisma.issue.update({
-      data: UpdateArticleInput,
+      data: {
+        ...updateIssueInput,
+      },
       where:{
         id: id
       }
@@ -43,4 +46,27 @@ export class IssuesService {
       }
     })
   }
+
+  addArticle(issueId: string, articleId: string){
+    return this.prisma.issue.update({
+      data: {
+        articles:{connect: {id: articleId}},
+      },
+      where:{
+        id: issueId
+      }
+    })
+  }
+
+  removeArticle(issueId: string, articleId: string){
+    return this.prisma.issue.update({
+      data: {
+        articles:{disconnect: {id: articleId}},
+      },
+      where:{
+        id: issueId
+      }
+    })
+  }
+
 }

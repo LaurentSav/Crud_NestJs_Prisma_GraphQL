@@ -13,6 +13,4 @@ export class CreateIssueInput {
   @Field({nullable: true, description: "Archivation de l'issue"})
   archived?: boolean
 
-
-
 }

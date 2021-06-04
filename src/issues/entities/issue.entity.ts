@@ -1,7 +1,7 @@
 import { ObjectType, Field, ID } from '@nestjs/graphql';
 import { Article } from 'src/articles/entities/article.entity';
 
-@ObjectType()
+@ObjectType('Issue')
 export class Issue {
   @Field(type => ID, {description: 'Id'})
   id: string;

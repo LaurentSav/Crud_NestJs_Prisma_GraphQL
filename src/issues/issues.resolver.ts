@@ -1,8 +1,9 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, Int, ResolveField, Parent } from '@nestjs/graphql';
 import { IssuesService } from './issues.service';
 import { Issue } from './entities/issue.entity';
 import { CreateIssueInput } from './dto/create-issue.input';
 import { UpdateIssueInput } from './dto/update-issue.input';
+import { ArticlesService } from 'src/articles/articles.service';
 
 @Resolver(() => Issue)
 export class IssuesResolver {
@@ -32,4 +33,15 @@ export class IssuesResolver {
   removeIssue(@Args('id', { type: () => String }) id: string) {
     return this.issuesService.remove(id);
   }
+
+  @Mutation(() => Issue)
+  addArticle(@Args('idIssue', { type: () => String }) issueId: string, @Args('idArticle', { type: () => String }) articleId: string) {
+    return this.issuesService.addArticle(issueId, articleId);
+  }
+
+  @Mutation(() => Issue)
+  removeArticle(@Args('idIssue', { type: () => String }) issueId: string, @Args('idArticle', { type: () => String }) articleId: string) {
+    return this.issuesService.removeArticle(issueId, articleId);
+  }
+
 }

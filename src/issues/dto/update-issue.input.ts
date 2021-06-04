@@ -15,6 +15,4 @@ export class UpdateIssueInput extends PartialType(CreateIssueInput) {
 
   @Field({nullable: true, description: "Archivation de l'issue"})
   archived?: boolean
-
-
 }

@@ -1,9 +1,6 @@
 import { Prisma } from '.prisma/client';
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/services/prisma.service';
-import { CreateArticleInput } from './dto/create-article.input';
-import { UpdateArticleInput } from './dto/update-article.input';
-import { Article } from './entities/article.entity';
 
 @Injectable()
 export class ArticlesService {
@@ -11,9 +8,10 @@ constructor(private readonly prisma: PrismaService){}
 
   async create(data: Prisma.ArticleCreateInput){
     return await this.prisma.article.create({
-      data
+      data: {
+        ...data,
+      }
     });
-    
   }
 
   async findAll() {
