@@ -6,8 +6,8 @@ import {
 } from '@nestjs/graphql';
 import { Post } from './post.model';
 import { BaseModel } from './base.model';
-import { Article } from 'src/articles/entities/article.entity';
-import { Issue } from 'src/issues/entities/issue.entity';
+import { Article } from '../articles/entities/article.entity';
+import { Issue } from '../issues/entities/issue.entity';
 
 export enum Role {
   ADMIN = 'ADMIN',

@@ -1,6 +1,6 @@
 import { ObjectType, Field, ID } from '@nestjs/graphql';
-import { Article } from 'src/articles/entities/article.entity';
-import { User } from 'src/models/user.model';
+import { Article } from '../../articles/entities/article.entity';
+import { User } from '../../models/user.model';
 
 @ObjectType('Issue')
 export class Issue {
