@@ -1,0 +1,14 @@
+query Issues {
+    issues{
+        ...Issue
+    }
+}
+
+fragment Issue on Issue{
+    id
+    createdAt
+    updatedAt
+    articles{
+        id
+    }
+}

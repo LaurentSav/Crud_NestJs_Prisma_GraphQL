@@ -11,6 +11,8 @@ Table User {
   firstname String
   lastname String
   posts Post [not null]
+  articles Article [not null]
+  issues Issue [not null]
   role Role [not null]
 }
 
@@ -36,6 +38,8 @@ Table Article {
   reading_time Int
   issue Issue
   issueId String
+  author User
+  authorId String
 }
 
 Table Issue {
@@ -45,6 +49,8 @@ Table Issue {
   published Boolean [not null, default: false]
   archived Boolean [not null, default: false]
   articles Article [not null]
+  author User
+  authorId String
 }
 
 Enum Role {
@@ -55,3 +61,7 @@ Enum Role {
 Ref: Post.authorId > User.id
 
 Ref: Article.issueId > Issue.id
+
+Ref: Article.authorId > User.id
+
+Ref: Issue.authorId > User.id

@@ -1,5 +1,6 @@
 import { ObjectType, Field, ID } from '@nestjs/graphql';
 import { Article } from 'src/articles/entities/article.entity';
+import { User } from 'src/models/user.model';
 
 @ObjectType('Issue')
 export class Issue {
@@ -21,4 +22,9 @@ export class Issue {
   @Field(() => [Article], {nullable: 'itemsAndList', description: "Liste d'article de l'issue"})
   articles: Article[]
 
+  @Field(() => [User], {nullable: true, description: "Auteur de l'article"})
+  author?: User
+
+  @Field({nullable: true, description: "Id de l'auteur"})
+  authorId?: string
 }

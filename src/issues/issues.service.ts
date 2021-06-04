@@ -98,4 +98,34 @@ export class IssuesService {
     })
   }
 
+  publish(issueId: string){
+    return this.prisma.issue.update({
+      data: {
+        published: true,
+        archived: false,
+      },
+      where:{
+        id: issueId
+      },
+      include: {
+        articles: true
+      }
+    })
+  }
+
+  archive(issueId: string){
+    return this.prisma.issue.update({
+      data: {
+        published: false,
+        archived: true,
+      },
+      where:{
+        id: issueId
+      },
+      include: {
+        articles: true
+      }
+    })
+  }
+
 }

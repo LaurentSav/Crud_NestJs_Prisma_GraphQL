@@ -6,6 +6,12 @@ type Article {
   """Archivation de l'article"""
   archived: Boolean
 
+  """Auteur de l'article"""
+  author: [User!]
+
+  """Id de l'auteur"""
+  authorId: String
+
   """Contenu de l'article"""
   content: String
 
@@ -97,6 +103,12 @@ type Issue {
   """Liste d'article de l'issue"""
   articles: [Article]
 
+  """Auteur de l'article"""
+  author: [User!]
+
+  """Id de l'auteur"""
+  authorId: String
+
   """Date de création de l'issue"""
   createdAt: Date
 
@@ -117,11 +129,13 @@ input LoginInput {
 
 type Mutation {
   addArticlePost(idArticle: String!, idIssue: String!): Issue!
+  archiveArticlePost(idIssue: String!): Issue!
   changePassword(data: ChangePasswordInput!): User!
   createArticle(createArticleInput: CreateArticleInput!): Article!
   createIssue(createIssueInput: CreateIssueInput!): Issue!
   createPost(data: CreatePostInput!): Post!
   login(data: LoginInput!): Auth!
+  publishArticlePost(idIssue: String!): Issue!
   refreshToken(token: String!): Token!
   removeArticle(id: String!): Article!
   removeArticlePost(idArticle: String!, idIssue: String!): Issue!
@@ -203,6 +217,7 @@ type Query {
 """User role"""
 enum Role {
   ADMIN
+  EDITOR
   USER
 }
 
@@ -275,11 +290,14 @@ input UpdateUserInput {
 }
 
 type User {
+  articles: [Article!]!
+
   """Identifies the date and time when the object was created."""
   createdAt: Date!
   email: String!
   firstname: String
   id: ID!
+  issues: [Issue!]!
   lastname: String
   posts: [Post!]!
   role: Role!

@@ -6,10 +6,13 @@ import {
 } from '@nestjs/graphql';
 import { Post } from './post.model';
 import { BaseModel } from './base.model';
+import { Article } from 'src/articles/entities/article.entity';
+import { Issue } from 'src/issues/entities/issue.entity';
 
 export enum Role {
   ADMIN = 'ADMIN',
   USER = 'USER',
+  EDITOR = 'EDITOR'
 }
 
 registerEnumType(Role, {
@@ -24,6 +27,8 @@ export class User extends BaseModel {
   lastname?: string;
   role: Role;
   posts: Post[];
+  articles: Article[];
+  issues: Issue[];
   @HideField()
   password: string;
 }

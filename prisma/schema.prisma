@@ -21,6 +21,8 @@ model User {
   firstname String?
   lastname  String?
   posts     Post[]
+  articles  Article[]
+  issues    Issue[]
   role      Role
 }
 
@@ -45,8 +47,11 @@ model Article {
   content   String?
   reading_time  Int?
 
+  //Foreign Key
   issue     Issue?    @relation(fields: [issueId], references: [id])
   issueId  String?
+  author    User?    @relation(fields: [authorId], references: [id])
+  authorId  String?
   
 }
 
@@ -57,6 +62,10 @@ model Issue {
   published Boolean  @default(false)
   archived  Boolean  @default(false)
   articles  Article[]
+
+  //Foreign Key
+  author    User?    @relation(fields: [authorId], references: [id])
+  authorId  String?
   
 }
 

@@ -35,4 +35,9 @@ export class Article {
   @Field({nullable: true, description: "Id de l'issue"})
   issueId?: string
   
+  @Field(() => [User], {nullable: true, description: "Auteur de l'article"})
+  author?: User
+
+  @Field({nullable: true, description: "Id de l'auteur"})
+  authorId?: string
 }

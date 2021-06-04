@@ -1,0 +1,21 @@
+query Articles {
+    articles{
+        ...Article
+    }
+}
+
+query Article {
+    article(id:"ckph4ahqa0053o4vhiszyq28k"){
+        ...Article
+    }
+}
+
+fragment Article on Article{
+    id
+    title
+    reading_time
+    content
+    createdAt
+    updatedAt
+    issueId
+}

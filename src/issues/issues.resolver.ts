@@ -4,6 +4,7 @@ import { Issue } from './entities/issue.entity';
 import { CreateIssueInput } from './dto/create-issue.input';
 import { UpdateIssueInput } from './dto/update-issue.input';
 import { ArticlesService } from 'src/articles/articles.service';
+import { Role } from 'src/models/user.model';
 
 @Resolver(() => Issue)
 export class IssuesResolver {
@@ -44,4 +45,13 @@ export class IssuesResolver {
     return this.issuesService.removeArticle(issueId, articleId);
   }
 
+  @Mutation(() => Issue)
+  publishArticlePost(@Args('idIssue', { type: () => String }) issueId: string) {
+    return this.issuesService.publish(issueId);
+  }
+
+  @Mutation(() => Issue)
+  archiveArticlePost(@Args('idIssue', { type: () => String }) issueId: string) {
+    return this.issuesService.archive(issueId);
+  }
 }
