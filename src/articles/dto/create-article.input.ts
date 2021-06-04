@@ -1,4 +1,5 @@
-import { InputType, Int, Field } from '@nestjs/graphql';
+import { InputType, Int, Field, ID } from '@nestjs/graphql';
+import { Issue } from 'src/issues/entities/issue.entity';
 
 @InputType()
 export class CreateArticleInput {
@@ -15,12 +16,12 @@ export class CreateArticleInput {
   @Field({nullable: true, description: "Date de création de l'article"})
   createdAt?: Date;
 
-  @Field({nullable: true, description: "Date de mise à jour de l'article"})
-  updatedAt?: Date;
-
   @Field({nullable: true, description: "Publication de l'article"})
   published?: boolean
 
   @Field({nullable: true, description: "Archivation de l'article"})
   archived?: boolean
+  
+  @Field(type => ID, {nullable: true, description: "Id de l'issue"})
+  issueId?: string
 }

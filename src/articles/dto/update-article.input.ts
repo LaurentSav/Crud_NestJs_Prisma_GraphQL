@@ -1,5 +1,6 @@
 import { CreateArticleInput } from './create-article.input';
-import { InputType, Field, Int, PartialType } from '@nestjs/graphql';
+import { InputType, Field, Int, PartialType, ID } from '@nestjs/graphql';
+import { Issue } from 'src/issues/entities/issue.entity';
 
 @InputType()
 export class UpdateArticleInput extends PartialType(CreateArticleInput) {
@@ -15,9 +16,6 @@ export class UpdateArticleInput extends PartialType(CreateArticleInput) {
   @Field({nullable: true, description: "Temps de lecture d'un article l'article"})
   reading_time?: number;
 
-  @Field({nullable: true, description: "Date de création de l'article"})
-  createdAt?: Date;
-
   @Field({nullable: true, description: "Date de mise à jour de l'article"})
   updatedAt?: Date;
 
@@ -26,4 +24,7 @@ export class UpdateArticleInput extends PartialType(CreateArticleInput) {
 
   @Field({nullable: true, description: "Archivation de l'article"})
   archived?: boolean
+
+  @Field(type => ID, {nullable: true, description: "Id de l'issue"})
+  issueId?: string
 }

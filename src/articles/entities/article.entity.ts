@@ -29,7 +29,7 @@ export class Article {
   @Field({nullable: true, description: "Archivation de l'article"})
   archived?: boolean
 
-  @Field({nullable: true, description: "Issue de l'article"})
+  @Field(() => [Issue], {nullable: true, description: "Issue de l'article"})
   issue?: Issue
 
   @Field(type => ID, {nullable: true, description: "Id de l'issue"})

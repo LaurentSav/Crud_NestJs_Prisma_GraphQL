@@ -1,4 +1,5 @@
 import { ObjectType, Field, ID } from '@nestjs/graphql';
+import { Article } from 'src/articles/entities/article.entity';
 
 @ObjectType()
 export class Issue {
@@ -17,7 +18,7 @@ export class Issue {
   @Field({nullable: true, description: "Archivation de l'issue"})
   archived?: boolean
 
-  @Field({nullable: true, description: "Liste d'article de l'issue"})
-  articles?: []
+  @Field(() => [Article], {nullable: 'itemsAndList', description: "Liste d'article de l'issue"})
+  articles: Article[]
 
 }
