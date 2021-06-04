@@ -4,6 +4,7 @@ import { IssuesResolver } from './issues.resolver';
 import { PrismaService } from '../services/prisma.service';
 
 @Module({
-  providers: [IssuesResolver, IssuesService, PrismaService]
+  providers: [IssuesResolver, IssuesService, PrismaService],
+  exports: [IssuesService, PrismaService]
 })
 export class IssuesModule {}
